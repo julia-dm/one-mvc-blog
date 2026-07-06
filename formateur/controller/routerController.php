@@ -12,6 +12,8 @@
 
 // appel du gestionnaire de category
 require_once BASE_URL."/model/CategoryModel.php";
+// appel du gestionnaire de article
+require_once BASE_URL."/model/ArticleModel.php";
 
 /**
  * On a besoin d'une connexion MySQL
@@ -47,6 +49,9 @@ try{
 
 // récupération des catégories pour le menu
 $menu = selectCategoryForMenu($connection);
+
+// récupération des articles pour la homepage
+$articles = selectHomepageArticle($connection);
 
 // appel de la vue
 include_once BASE_URL."/view/homepage.html.php";
