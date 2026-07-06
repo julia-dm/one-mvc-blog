@@ -13,27 +13,11 @@
     </head>
 <body>
             <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">OneBLog</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+     
+        <?php
+        include BASE_URL."/view/include/menu.public.html.php";
+        ?>
+
            <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5">
@@ -41,13 +25,33 @@
                 <p class="lead">Page d'accueil de mon blog</p>
             
             </div>
+               <?php 
+            // si pas d'articles
+            if(empty($articles)):
+        
+        ?>
+        <h3>Pas encore d'article</h3>
+       <?php
+            // il y a au mois un article
+            else:
+                // on va compter le nombre d'articles
+                $count=count($articles);
+                // preparation du pluriel si on a plus d'un message
+                $pluriel = $count > 1 ? "s" : "";
+            ?>
+               <h4>Il y a <?= $count ?> article<?= $pluriel ?></h4>
+         <?php 
+       endif;
+        
+        ?>
         </div>
         <!-- Bootstrap core JS-->
         <script src="js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+     
     <?php 
-    var_dump($connection,$menu);
+    var_dump($connection,$articles,$menu);
     ?>
 </body>
 </html>
