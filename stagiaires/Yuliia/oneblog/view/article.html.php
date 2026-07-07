@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="OneBLog | accueil de mon blog" />
     <meta name="author" content="Yuliia Dmytruk" />
-    <title>OneBlog | Accueil </title>
+    <title>OneBlog | TITRE de ARTICLE </title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -27,38 +27,18 @@
             <p class="lead">Page d'accueil de mon blog</p>
 
         </div>
-        <?php
-        // si pas d'articles
-        if (empty($articles)):
-
-        ?>
-            <h3>Pas encore d'article</h3>
-        <?php
-        // il y a au mois un article
-        else:
-            // on va compter le nombre d'articles
-            $count = count($articles);
-            // preparation du pluriel si on a plus d'un message
-            $pluriel = $count > 1 ? "s" : "";
-        ?>
-
-            <h4 class="pb-3">Il y a <?= $count ?> article<?= $pluriel ?></h4>
+    
             <div class="row ">
-                <?php
-                // tant qu'on a des articles
-                foreach ($articles as $article):
-
-                ?>
                     <!-- Three columns of text below the carousel -->
 
-                    <div class="col-lg-4">
-                        <h3><a href="?idarticle=<?= $article['id'] ?>"><?= $article['title'] ?></a> </h3>
+                    <div >
+                        <h3 class="text-center"><a href="?idarticle=<?= $article['id'] ?>"><?= $article['title'] ?></a> </h3>
                         <?php
 
                         if (is_null($article['idcategory'])):
                         ?>
 
-                            <h4> Aucune catégorie</h4>
+                            <h4 class="text-center"> Aucune catégorie</h4>
                         <?php
                         else:
                             // on va transformer les chaines en tableau indexé
@@ -69,33 +49,24 @@
                             // on compte le nombre de categories 
                             $nbcateg = count($idcateg);
                         ?>
-
-                            <h5 class="p-3"><?php
-                                            // tant qu'on a des catégories
-                                            for ($i = 0; $i < $nbcateg; $i++):
-                                                // on les affiches avec le lien qui sont leurs IDs
-                                            ?>
-                                    <a href="?idcateg=<?= $idcateg[$i] ?>"><?= $titlecategory[$i] ?></a> |
+                            <h5 class="text-center">
                                 <?php
-                                            endfor;
+                                    for($i=0;$i<$nbcateg;$i++):
                                 ?>
+                               <a class="text-center" href="?idcateg=<?= $idcateg[$i] ?>"><?= $titlecategory[$i] ?></a> | 
                             </h5>
                         <?php
+                        endfor;
                         endif;
                         ?>
 
-                        <p class="lead">Ecrit par <a href="?iduser=<?= $article['iduser'] ?>"> <?= $article['realname']  ?></a> le <?= $article['datetime'] ?>
-                        <p>
-                        <p> <?= cutTheText($article['content'], 180) ?> ... <a href="?idarticle=<?= $article['id'] ?>">lire la suite</a></p>
+                        <p class="lead text-center">Ecrit par <a href="?iduser=<?= $article['iduser'] ?>"> <?= $article['realname']  ?></a> le <?= $article['datetime'] ?><p>
+                        <p> <?=nl2br( $article['content']) ?> </p>
                     </div>
 
 
 
-            <?php
-                endforeach;
-            endif;
 
-            ?>
             </div>
     </div>
     <!-- Bootstrap core JS-->
