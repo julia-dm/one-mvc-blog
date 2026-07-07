@@ -84,7 +84,7 @@
                             <a href="?iduser=<?= $article['iduser'] ?>">
                                 <?= $article['realname']  ?></a> le <?= $article['datetime'] ?>
                         <p>
-                        <p>jkhkjh</p>
+                        <p> <?=cutTheText( $article['content'],180 ) ?> ... <a href="?idarticle=<?= $article['id'] ?>">lire la suite</a></p>
                     </div>
 
 
@@ -102,7 +102,7 @@
     <script src="js/scripts.js"></script>
 
     <?php
-    var_dump($connection, $articles, $menu);
+    // var_dump($connection, $articles, $menu);
     ?>
 </body>
 
