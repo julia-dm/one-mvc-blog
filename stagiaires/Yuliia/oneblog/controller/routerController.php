@@ -25,7 +25,9 @@ try{
         username:DB_LOGIN,
         password:DB_PWD,
         options:[
+            # activation de l'affichage des erreurs
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            # on ne récupère les données qu'au formation tableau associatif
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]
     );
@@ -33,15 +35,31 @@ try{
     // arrêt du script et affichage de l'erreur
     die($e->getMessage());
 }
+// gestion des données utiles pour toutes les pages
+
+// récuperation des  catégories pour le menu
+$menu=selectCategoryFromMenu($connection);
  
+/**
+ * Début du router
+ */
+
+// on va vérifier l'existance (avec isset ou le fait qu'il soit non vide pour le 0)
+// de la variable
+if(!empty($_GET['idarticle']) && ctype_digit($_GET['idarticle'])){
+   // echo $_GET['idarticle'];
+
+   //on met dans une variable locale la variable GET transformée en entier
+   $idarticle=(int) $_GET['idarticle']; 
+   // ou settype($_GET['idarticle'],"integer")
+}
+
+
 /****************************
  * homepage
  ***************************/
  
-// gestion des données
 
-// récuperation des  catégories pour le menu
-$menu=selectCategoryFromMenu($connection);
 
 // récuperation des  articles pour la homepage
 $articles=selectHomepageArticle($connection);

@@ -58,3 +58,5 @@ function cutTheText(string $text, int $length = 200): string
     return $text;
 }
 //echo cutTheText("coucou les bbbib", 7);
+
+
