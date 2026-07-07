@@ -13,6 +13,7 @@
 
 // appel du gestionnaire de category
 require_once BASE_URL."/model/CategoryModel.php";
+require_once BASE_URL."/model/ArticleModel.php";
 
 
 try{
@@ -38,7 +39,7 @@ try{
 // récupération des category pourmenu 
 
 $menu = selectCategoryForMenu($connection);
-
+$articles= selectHomepageArticle($connection);
 // gestion des données
 
 // appel de la vue
