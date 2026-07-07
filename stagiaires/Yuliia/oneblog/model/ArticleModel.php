@@ -102,3 +102,13 @@ function selectArticleById(PDO $db, int $id): ? array
     // envoie du résultat
     return $article;
 }
+
+
+function frenchDate(string $date): string
+{
+    // on essaie de convertir la date en timestamp (01/01/1970 en seconds)
+ return $timestamp=strtotime($date);
+ // on va la formater avec en date en francais 
+ $date=date("d/m/Y à H:\hi",$timestamp)
+return $date;
+}
